@@ -53,9 +53,9 @@
       </div>
   
 <!-- Modal -->
-<div class="modal" v-if="selectedCharacter" @click.self="closeModal">
-  <div class="modal-content text-white">
-    <span class="close" @click="closeModal">&times;</span>
+  <div class="modal" v-if="selectedCharacter" @click.self="closeModal">
+    <div class="modal-content text-white">
+      <span class="close" @click="closeModal">&times;</span>
     <div>
       <img class="img-modal" :src="selectedCharacter.image" :alt="selectedCharacter.name" />
     </div>
@@ -330,7 +330,6 @@ export default {
 }
 
 .img-modal{
-  border:1px solid rgb(33, 151, 112);
   border-radius: 100px;
 }
 
