@@ -63,9 +63,11 @@
     <p class="modal-text">Nome: <span class="modal-value">{{ selectedCharacter.name }}</span></p>
     <p class="modal-text">Status: 
       <i v-if="selectedCharacter.status === 'Alive'" class="fas fa-circle status-icon" style="color: rgb(4, 175, 4);"></i>
-      <i v-else class="fas fa-circle status-icon" style="color: rgb(224, 50, 50);"></i> 
+      <i v-else-if="selectedCharacter.status === 'Dead'" class="fas fa-circle status-icon" style="color: rgb(224, 50, 50);"></i> 
+      <i v-else class="fas fa-circle status-icon" style="color: rgb(169, 169, 169);"></i>
       <span v-if="selectedCharacter.status === 'Alive'" class="modal-value"> Vivo</span>
-      <span v-else class="modal-value"> Morto</span>
+      <span v-else-if="selectedCharacter.status === 'Dead'" class="modal-value"> Morto</span>
+      <span v-else class="modal-value"> Desconhecido</span>
     </p>
     <p class="modal-text">
       Espécie:
@@ -75,7 +77,6 @@
       <span v-if="selectedCharacter.species === 'Human'" class="modal-value"> Humano</span>
       <span v-else-if="selectedCharacter.species === 'Alien'" class="modal-value"> Alienígena</span>
       <span v-else-if="selectedCharacter.species === 'Parasite'" class="modal-value"> Parasita</span>
-      <span v-else class="modal-value"> Desconhecida</span>
     </p>
     <p class="modal-text">Total de episódios: <span class="modal-value">{{ selectedCharacter.episode.length }}</span></p>
     <p class="modal-text">Localização: <span class="modal-value">{{ selectedCharacter.location.name }}</span></p>
