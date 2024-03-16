@@ -273,7 +273,7 @@ export default {
 
 .modal-value {
   font-weight: bold;
-  margin-left: 5px;
+  margin-left: 4px;
 }
 
 .search-bar {
