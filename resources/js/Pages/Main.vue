@@ -1,20 +1,23 @@
 <template>
   <div>
-    <!-- Div para o background da parte superior -->
+    <!-- div pro background da parte superior -->
     <div class="background-top"></div>
 
+    <!-- efeito de linha verde entre eles -->
     <div class="green-line"></div>
 
-    <!-- Conteúdo da página -->
+    <!-- conteúdo da página -->
     <div class="page-container d-flex flex-column">
-      <h2 class="text-center text-white fw-bold font-monospace custom-title">Personagens Rick and Morty</h2>
+      <h2 class="text-center text-white fw-bold custom-title" style="font-family: 'Get Schwifty', cursive;">Rick and Morty Personagens</h2>
+
       <br><br>
-      <div class="search-bar row mb-3">
-        <div class="col-md-6">
-          <input type="text" class="form-control text-center" v-model="searchQuery" placeholder="Pesquisar por nome" @input="searchCharacters" />
+      <div class="search-bar row md-2">
+        <div class="col-md-3 position-relative as">
+          <span class="search-icon fas fa-search"></span>
+          <input type="text" class="form-control search-input" v-model="searchQuery" placeholder="Pesquisar por nome" @input="searchCharacters" />
         </div>
-        <div class="col-md-3">
-          <select class="form-select text-center" v-model="statusFilter" @change="filterCharacters">
+        <div class="col-md-2">
+          <select class="form-select text-center search-input-select text-white" v-model="statusFilter" @change="filterCharacters">
             <option value="">Todos</option>
             <option value="Alive">Vivo</option>
             <option value="Dead">Morto</option>
@@ -36,6 +39,9 @@
               </div>
             </div>
           </div>
+        </div><br><br>
+        <div class="current-characters-info text-center text-white mt-3">
+          <p>Total de Personagens Encontrados: {{ filteredCharacters.length }}</p>
         </div>
         <div class="pagination justify-content-center">
           <button class="btn btn-secondary me-1" @click="previousPage" :disabled="currentPage === 1">Anterior</button>
@@ -44,21 +50,35 @@
         </div>
       </div>
   
-      <!-- Modal -->
-      <div class="modal" v-if="selectedCharacter" @click.self="closeModal">
-        <div class="modal-content text-white">
-            <span class="close" @click="closeModal">&times;</span>
-          <div>
-            <img class="img-modal" :src="selectedCharacter.image" :alt="selectedCharacter.name" />
-          </div>
-          <br><br>
-          <p>Nome: {{ selectedCharacter.name }}</p>
-          <p>Status: {{ selectedCharacter.status }}</p>
-          <p>Espécie: {{ selectedCharacter.species }}</p>
-          <p>Total de episódios: {{ selectedCharacter.episode.length }}</p>
-          <p>Localização: {{ selectedCharacter.location.name }}</p>
-        </div>
-      </div>
+<!-- Modal -->
+<div class="modal" v-if="selectedCharacter" @click.self="closeModal">
+  <div class="modal-content text-white">
+    <span class="close" @click="closeModal">&times;</span>
+    <div>
+      <img class="img-modal" :src="selectedCharacter.image" :alt="selectedCharacter.name" />
+    </div>
+    <br><br>
+    <p class="modal-text">Nome: <span class="modal-value">{{ selectedCharacter.name }}</span></p>
+    <p class="modal-text">Status: 
+      <i v-if="selectedCharacter.status === 'Alive'" class="fas fa-circle status-icon" style="color: rgb(4, 175, 4);"></i>
+      <i v-else class="fas fa-circle status-icon" style="color: rgb(224, 50, 50);"></i> 
+      <span v-if="selectedCharacter.status === 'Alive'" class="modal-value"> Vivo</span>
+      <span v-else class="modal-value"> Morto</span>
+    </p>
+    <p class="modal-text">
+      Espécie:
+      <i v-if="selectedCharacter.species === 'Human'" class="fas fa-user"></i>
+      <i v-else-if="selectedCharacter.species === 'Alien'" class="fas fa-space-shuttle"></i>
+      <i v-else-if="selectedCharacter.species === 'Parasite'" class="fas fa-bug"></i>
+      <span v-if="selectedCharacter.species === 'Human'" class="modal-value"> Humano</span>
+      <span v-else-if="selectedCharacter.species === 'Alien'" class="modal-value"> Alienígena</span>
+      <span v-else-if="selectedCharacter.species === 'Parasite'" class="modal-value"> Parasita</span>
+      <span v-else class="modal-value"> Desconhecida</span>
+    </p>
+    <p class="modal-text">Total de episódios: <span class="modal-value">{{ selectedCharacter.episode.length }}</span></p>
+    <p class="modal-text">Localização: <span class="modal-value">{{ selectedCharacter.location.name }}</span></p>
+  </div>
+</div>
     </div>
   </div>
 </template>
@@ -128,10 +148,10 @@ export default {
       }
     },
     searchCharacters() {
-      this.currentPage = 1; // Reset pagination when searching
+      this.currentPage = 1;
     },
     filterCharacters() {
-      this.currentPage = 1; // Reset pagination when filtering
+      this.currentPage = 1;
     },
     showDetails(character) {
       this.selectedCharacter = character;
@@ -147,15 +167,15 @@ export default {
 </script>
 
 <style scoped>
-/* Estilo para a parte superior da tela com o background */.background-top {
+@import url('https://fonts.googleapis.com/css2?family=Get+Schwifty&display=swap');
+.background-top {
   width: 100%;
-  height: 38vh; /* Define a altura como 70% da altura da tela */
-  background-image: url('/img/ricky-and-morty-bg.jpg'); /* Adiciona a imagem de fundo */
+  height: 38vh;
+  background-image: url('/img/ricky-and-morty-bg.jpg');
   background-size: cover;
-  background-position: center top 45%; /* Corta 20% do topo da imagem */
+  background-position: center top 45%;
 }
 
-/* Estilos restantes da sua página */
 .page-container {
   font-family: Arial, sans-serif;
   background-color: rgb(39, 43, 51);
@@ -202,12 +222,34 @@ export default {
 .modal-content {
   font-family: Arial, sans-serif;
   background-color: rgb(39, 43, 51);
-  padding-top: 10px;
-  padding: 20px;
-  border: solid 1px rgb(39, 43, 51);
-  border-radius: 10px;
-  max-width: 20%;
-  overflow-y: auto;
+  display: flex;
+  align-items: center;
+  width: 25%;
+  padding: 40px;
+}
+
+/* Media query para tablets */
+@media only screen and (max-width: 1100px) {
+  .modal-content {
+    width: 100%;
+  }
+
+  .search-input {
+    width: 85% !important;
+  }
+
+  .custom-title {
+    font-size: 2rem !important;
+  }
+
+  .search-icon {
+    display: none !important;
+  }
+
+  .as{
+    display: contents;
+  }
+  
 }
 
 .close {
@@ -218,6 +260,17 @@ export default {
   font-size: 28px;
   font-weight: bold;
   cursor: pointer;
+}
+
+.modal-text {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.modal-value {
+  font-weight: bold;
+  margin-left: 5px;
 }
 
 .search-bar {
@@ -234,7 +287,7 @@ export default {
 
 .custom-title {
   font-size: 3rem;
-  text-shadow: 1px 5px 10px rgba(6, 252, 6, 0.5);
+  text-shadow: 1px 5px 10px rgba(6, 252, 6, 0.349);
   color: #ffc107;
   animation: pulse 7s infinite alternate;
 }
@@ -246,6 +299,41 @@ export default {
   to {
     transform: scale(1.05);
   }
+}
+
+.search-input {
+  border-radius: 30px;
+  width: 100%;
+}
+
+.search-input-select {
+  border-radius: 30px;
+  border: solid 1px rgb(39, 43, 51);
+  background-color: rgb(63, 66, 71);
+  cursor: pointer;
+}
+
+/* Estilizando as options quando hover */
+.search-input-select option:hover {
+  background-color: #067722 !important; /* Cor de fundo das options quando hover */
+  color: #000; /* Cor do texto das options quando hover */
+}
+
+.search-icon {
+  position: absolute;
+  top: 50%;
+  right: 7%;
+  transform: translateY(-50%);
+  color: #6c757d;
+}
+
+.img-modal{
+  border:1px solid rgb(33, 151, 112);
+  border-radius: 100px;
+}
+
+.search-icon:hover {
+  color: #343a40;
 }
 
 .green-line {
