@@ -17,12 +17,14 @@
           <input type="text" class="form-control search-input" v-model="searchQuery" placeholder="Pesquisar por nome" @input="searchCharacters" />
         </div>
         <div class="col-md-2">
-          <select class="form-select text-center search-input-select text-white" v-model="statusFilter" @change="filterCharacters">
-            <option value="">Todos</option>
-            <option value="Alive">Vivo</option>
-            <option value="Dead">Morto</option>
-            <option value="unknown">Desconhecido</option>
-          </select>
+          <div class="input-group">
+            <select class="form-select text-center search-input-select text-white" v-model="statusFilter" @change="filterCharacters">
+              <option value="">Todos</option>
+              <option value="Alive">Vivo</option>
+              <option value="Dead">Morto</option>
+              <option value="unknown">Desconhecido</option>
+            </select>
+          </div>
         </div>
       </div>
       <div v-if="loading">Carregando...</div>
