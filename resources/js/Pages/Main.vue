@@ -179,7 +179,7 @@ export default {
 .page-container {
   font-family: Arial, sans-serif;
   background-color: rgb(39, 43, 51);
-  padding: 100px;
+  padding: 60px;
 }
 
 .character-card {
