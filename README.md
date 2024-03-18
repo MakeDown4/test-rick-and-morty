@@ -4,7 +4,7 @@ Este projeto é uma aplicação Laravel que consome a API pública do Rick and M
 
 ### Requisitos
 
-- PHP >= 8.0
+- PHP >= 8.2
 - Composer
 - Node.js >= 18
 - NPM
