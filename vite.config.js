@@ -10,7 +10,4 @@ export default defineConfig({
             refresh: true,
         }),
     ],
-    build: {
-        outDir: 'public/build', // Especifica o diretório de saída para os arquivos construídos
-    },
 });
