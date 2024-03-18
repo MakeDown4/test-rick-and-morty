@@ -2,6 +2,8 @@
 
 Este projeto é uma aplicação Laravel que consome a API pública do Rick and Morty para listar personagens, episódios e localizações.
 
+Foi utilizada no projeto a instalação do Laravel 11 com a biblioteca 'Inertia' para renderizar componentes no conceito Single Page Application, e a lógica de utilização da api externa ficou no front-end mesmo para fins de performance.
+
 ### Requisitos
 
 - PHP >= 8.2
@@ -20,7 +22,7 @@ Este projeto é uma aplicação Laravel que consome a API pública do Rick and M
 2. Instale as dependências PHP:
 
     ```bash
-    composer install --ignore-platform-req=ext-fileinfo
+    composer install
     ```
 
 3. Instale as dependências JavaScript:
@@ -59,10 +61,3 @@ Este projeto é uma aplicação Laravel que consome a API pública do Rick and M
     ```
 
     Isso irá iniciar o compilador de ativos e assistir a quaisquer mudanças nos arquivos JavaScript e CSS.
-
-### Testes
-
-Para executar os testes unitários, utilize o seguinte comando:
-
-```bash
-php artisan test
