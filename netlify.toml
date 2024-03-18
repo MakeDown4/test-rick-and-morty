@@ -1,4 +1,4 @@
 [build]
 environment = { PHP_VERSION = "8.2"}    
-command = "php artisan build"
-publish = "/"
+command = "npm run build"
+publish = "public/build"
