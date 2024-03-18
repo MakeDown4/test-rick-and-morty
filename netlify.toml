@@ -1,2 +1,4 @@
 [build]
-environment = { PHP_VERSION = "8.2"}
+environment = { PHP_VERSION = "8.2"}    
+command = "npm run build"
+publish = "dist"
