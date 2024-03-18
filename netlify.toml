@@ -1,4 +1,14 @@
 [build]
 environment = { PHP_VERSION = "8.2"}    
-command = "npm run build"
-publish = "public/build"
+  # Diretório onde o sistema de build instala as dependências
+  # e executa o seu build. Armazene seu package.json, .nvmrc, etc. aqui.
+  # Se não definido, o padrão é o diretório raiz.
+  base = "/"
+
+  # Diretório que contém os arquivos HTML e assets prontos para implantação
+  # gerados pelo build. Este é um caminho absoluto relativo ao
+  # diretório base, que é a raiz por padrão (/).
+  publish = "public/build/"
+
+  # Comando de build padrão.
+  command = "npm run build"
