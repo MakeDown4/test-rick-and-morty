@@ -29,7 +29,13 @@ Este projeto é uma aplicação Laravel que consome a API pública do Rick and M
     npm install
     ```
 
-6. Gere uma chave de aplicativo:
+4. crie o arquivo .env a partir da .env.example e rode o comando para criar as migrations ( Assim ele irá solicitar para criar o banco ):
+
+    ```bash
+    php artisan migrate
+    ```
+
+5. Gere uma chave de aplicativo:
 
     ```bash
     php artisan key:generate
