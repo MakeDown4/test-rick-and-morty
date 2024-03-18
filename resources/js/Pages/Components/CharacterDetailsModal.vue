@@ -93,7 +93,11 @@ export default {
 }
 
 .modal-content {
-        width: 25%;
+    width: 22%;
+}
+
+.modal-text {
+        white-space: nowrap;
     }
 
 .close:hover,
@@ -105,10 +109,6 @@ export default {
 @media only screen and (max-width: 1100px) {
     .modal-content {
         width: 100%;
-    }
-
-    .modal-text {
-        white-space: nowrap;
     }
 }
 </style>  
