@@ -1,7 +1,5 @@
 [build]
 environment = { PHP_VERSION = "8.2"}    
-command = "bash build.sh"
-publish = "public"
 
 [[redirects]]
 from = "/"
