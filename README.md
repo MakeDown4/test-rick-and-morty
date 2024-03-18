@@ -20,7 +20,7 @@ Este projeto é uma aplicação Laravel que consome a API pública do Rick and M
 2. Instale as dependências PHP:
 
     ```bash
-    composer install
+    composer install --ignore-platform-req=ext-fileinfo
     ```
 
 3. Instale as dependências JavaScript:
