@@ -10,16 +10,27 @@ class CharacterController extends Controller
 {
     public function index(Request $request)
     {
-        $query = http_build_query($request->all());
-        $response = Http::get('https://rickandmortyapi.com/api/character?' . $query);
+        try {
+            $query = http_build_query($request->all());
 
-        return $response->json();
+            $response = Http::get('https://rickandmortyapi.com/api/character?' . $query);
+            $response->throw();
+
+            return $response->json();
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Erro ao buscar os personagens. Por favor, tente novamente mais tarde.'], 500);
+        }
     }
 
     public function show($id)
     {
-        $response = Http::get("https://rickandmortyapi.com/api/character/{$id}");
+        try {
+            $response = Http::get("https://rickandmortyapi.com/api/character/{$id}");
+            $response->throw();
 
-        return $response->json();
+            return $response->json();
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Erro ao buscar o personagem. Por favor, tente novamente mais tarde.'], 500);
+        }
     }
 }

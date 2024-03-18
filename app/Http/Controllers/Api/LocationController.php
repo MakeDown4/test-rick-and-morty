@@ -10,16 +10,27 @@ class LocationController extends Controller
 {
     public function index(Request $request)
     {
-        $query = http_build_query($request->all());
-        $response = Http::get('https://rickandmortyapi.com/api/location?' . $query);
+        try {
+            $query = http_build_query($request->all());
 
-        return $response->json();
+            $response = Http::get('https://rickandmortyapi.com/api/location?' . $query);
+            $response->throw();
+
+            return $response->json();
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Erro ao buscar as localizações. Por favor, tente novamente mais tarde.'], 500);
+        }
     }
 
     public function show($id)
     {
-        $response = Http::get("https://rickandmortyapi.com/api/location/{$id}");
+        try {
+            $response = Http::get("https://rickandmortyapi.com/api/location/{$id}");
+            $response->throw();
 
-        return $response->json();
+            return $response->json();
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Erro ao buscar a localização. Por favor, tente novamente mais tarde.'], 500);
+        }
     }
 }
