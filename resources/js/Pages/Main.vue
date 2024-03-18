@@ -1,37 +1,37 @@
 <template>
   <div>
     <BackgroundTop />
-      <GreenLine />
-        <PageContainer>
-          <CustomTitle>Rick and Morty - Personagens</CustomTitle>
-            <br><br>
-            <SearchBar
-              :searchQuery="searchQuery"
-              :statusFilter="statusFilter"
-              @updateSearchQuery="handleSearchQuery"
-              @updateStatusFilter="handleStatusFilter"
-            />
-            <br>
-            <div v-if="loading">Carregando...</div>
-            <div v-else>
-              <div class="info mb-3 text-white text-center">
-                <p>Total de Personagens Encontrados: {{ filteredCharacters.length }}</p>
-              </div>
-              <div class="row">
-                <CharacterCard
-                  v-for="character in paginatedCharacters"
-                  :key="character.id"
-                  :character="character"
-                  @showDetails="showModal"
-                />
-              </div><br><br>
-              <div class="pagination justify-content-center">
-                <button class="btn btn-secondary me-1" @click="previousPage" :disabled="currentPage === 1">Anterior</button>
-                <span v-for="pageNumber in totalPageNumbers" :key="pageNumber" class="btn btn-success me-1" :class="{ 'active': pageNumber === currentPage }" @click="goToPage(pageNumber)">{{ pageNumber }}</span>
-                <button class="btn btn-secondary" @click="nextPage" :disabled="currentPage === totalPages">Próxima</button>
-              </div>
-            </div>
-        <CharacterDetailsModal :selectedCharacter="selectedCharacter" @closeModal="closeModal" />
+    <GreenLine />
+    <PageContainer>
+      <CustomTitle>Rick and Morty - Personagens</CustomTitle>
+      <br><br>
+      <SearchBar
+        :searchQuery="searchQuery"
+        :statusFilter="statusFilter"
+        @updateSearchQuery="handleSearchQuery"
+        @updateStatusFilter="handleStatusFilter"
+      />
+      <br>
+      <div v-if="loading">Carregando...</div>
+      <div v-else>
+        <div class="info mb-3 text-white text-center">
+          <p>Total de Personagens Encontrados: {{ filteredCharacters.length }}</p>
+        </div>
+        <div class="row">
+          <CharacterCard
+            v-for="character in paginatedCharacters"
+            :key="character.id"
+            :character="character"
+            @showDetails="showModal"
+          />
+        </div><br><br>
+        <div class="pagination justify-content-center">
+          <button class="btn btn-secondary me-1" @click="previousPage" :disabled="currentPage === 1">Anterior</button>
+          <span v-for="pageNumber in totalPageNumbers" :key="pageNumber" class="btn btn-success me-1" :class="{ 'active': pageNumber === currentPage }" @click="goToPage(pageNumber)">{{ pageNumber }}</span>
+          <button class="btn btn-secondary" @click="nextPage" :disabled="currentPage === totalPages">Próxima</button>
+        </div>
+      </div>
+      <CharacterDetailsModal :selectedCharacter="selectedCharacter" @closeModal="closeModal" />
     </PageContainer>
   </div>
 </template>
@@ -57,14 +57,14 @@ export default {
       selectedCharacter: null
     };
   },
-    components: {
-      BackgroundTop,
-      GreenLine,
-      PageContainer,
-      CustomTitle,
-      SearchBar,
-      CharacterDetailsModal,
-      CharacterCard,
+  components: {
+    BackgroundTop,
+    GreenLine,
+    PageContainer,
+    CustomTitle,
+    SearchBar,
+    CharacterDetailsModal,
+    CharacterCard,
   },
   mounted() {
     this.fetchCharacters();
@@ -137,17 +137,16 @@ export default {
 </script>
 
 <style scoped>
-
 .info {
   margin-bottom: 10px;
 }
 
 @keyframes moveLine {
-    0% {
-      background-position: 0 0;
-    }
-    100% {
-      background-position: 200% 0;
-    }
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
 }
 </style>
